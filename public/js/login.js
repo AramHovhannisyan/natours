@@ -1,20 +1,17 @@
 import axios from "axios"
 
 export const login = async (email, password) => {
-    console.log("User Data: ", email, password);
 
     try {
 
         const res = await axios({
             method: 'post',
-            url: 'http://localhost:3000/api/v1/users/login',
+            url: '/api/v1/users/login',
             data: {
                 email,
                 password
             }
         });
-
-        console.log("Result: ", res.data.token);
 
         if(res.data.status === 'success'){
             location.assign('/')
@@ -31,7 +28,7 @@ export const logout = async () => {
 
         const res = await axios({
             method: 'get',
-            url: 'http://localhost:3000/api/v1/users/logout',
+            url: '/api/v1/users/logout',
             data: {
                 
             }

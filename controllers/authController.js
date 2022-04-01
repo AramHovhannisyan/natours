@@ -105,7 +105,6 @@ exports.protect = catchAsync( async (req, res, next) => {
     }
 
     // Check If User Recently Changed The Pass
-    // console.log(freshUser.changedPasswordAfter(decoded.iat));
     if(await freshUser.changedPasswordAfter(decoded.iat)){
         return next(new AppError('Password Recently changed, please log in again', 401))
     }
@@ -192,8 +191,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.updatePassword = catchAsync( async (req, res, next) => {
     // get user from collection
     const user = await User.findById(req.user.id).select('+password')
-
-    // console.log(await user.correctPassword(req.body.currentPassword, user.password));
 
     // check if current password is correct
     if(!(await user.correctPassword(req.body.currentPassword, user.password))){

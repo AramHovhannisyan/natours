@@ -8,6 +8,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const hpp = require('hpp')
 const cookieParser = require('cookie-parser')
+const compression = require('compression')
 
 const AppError = require('./utils/AppError')
 const globalErrorHandler = require('./controllers/errorController')
@@ -58,14 +59,11 @@ app.use(hpp({
     whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price']
 }))
 
+app.use(compression())
+
 app.use((req, res, next) => {
     // console.log("Cookies: ", req.cookies)
-    // res.setHeader( 'Content-Security-Policy', "script-src 'self' https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" ); 
-    // res.setHeader( 'X-Frame-Options', "SAMEORIGIN" )
-    // res.setHeader( 'Cross-Origin-Embedder-Policy', "require-corp" )
     res.setHeader( 'Content-Security-Policy', "script-src 'self' https://js.stripe.com" )
-    // res.cookie({sameSite: 'none', secure: true})
-    // res.setHeader( 'Access-Control-Allow-Origin', "https://js.stripe.com" )
     
     next()
 })

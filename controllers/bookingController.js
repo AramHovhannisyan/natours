@@ -28,8 +28,6 @@ exports.checkoutSession = catchAsync(async (req, res, next) => {
         ]
     })
 
-    console.log("aaaa", session);
-
     // Create session as response
 
     return res.status(200).json({
