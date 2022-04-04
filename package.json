@@ -26,6 +26,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^6.3.0",
     "helmet": "^5.0.2",
+    "heroku-log": "^1.4.0",
     "hpp": "^0.2.3",
     "html-to-text": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
